@@ -1,120 +1,108 @@
-# Smart Waste Classification using Deep Learning
+# ♻️ Smart Waste Classification using Deep Learning
 
-A Deep Learning based image classification project for automatically identifying different types of waste using **Convolutional Neural Networks (CNN)** and **MobileNetV2 Transfer Learning**.
+A Deep Learning and Computer Vision project that classifies waste images into **12 different waste categories** using a custom CNN and **MobileNetV2 Transfer Learning**.
 
-The project was developed using **Google Colab, TensorFlow/Keras and Kaggle**, with the complete notebook maintained on GitHub.
-
----
-
-## 📌 Project Overview
-
-Waste segregation is an important part of effective waste management. Manually identifying different categories of waste can be time-consuming.
-
-This project uses Computer Vision and Deep Learning to classify waste images into **12 different categories**.
-
-The project implements:
-
-- Image data inspection and preprocessing
-- A custom CNN model as a baseline
-- MobileNetV2 based transfer learning
-- Model training and evaluation
-- Confusion matrix analysis
-- Precision, Recall and F1-score evaluation
-- Prediction on new unseen images
+The project demonstrates an end-to-end image classification workflow including dataset preparation, image preprocessing, CNN model development, transfer learning, model training, evaluation, visualization, and real-world image prediction.
 
 ---
 
-## 🧠 Technologies Used
+## 🎯 Project Objective
 
-- Python
-- TensorFlow
-- Keras
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Google Colab
-- Kaggle Dataset
-- GitHub
+The objective of this project is to build an automated waste classification system that can identify the type of waste from an input image.
+
+Accurate waste classification can support better waste segregation and recycling by helping identify materials such as plastic, paper, metal, glass, cardboard, and biological waste.
+
+---
+
+## 🧠 Deep Learning Approach
+
+Two approaches were implemented and compared:
+
+### 1. Custom CNN
+
+A Convolutional Neural Network was developed from scratch using:
+
+- Convolutional layers
+- Max Pooling
+- Flatten
+- Dense layers
+- Dropout
+- Softmax classification
+
+### 2. MobileNetV2 Transfer Learning
+
+A pretrained **MobileNetV2** model was used as the main transfer-learning approach.
+
+MobileNetV2 was selected because it provides strong image feature extraction while remaining relatively lightweight and efficient compared with larger CNN architectures.
+
+---
+
+## 🔄 Project Workflow
+
+```text
+Waste Image
+     ↓
+Dataset Preparation
+     ↓
+Image Resizing (224 × 224)
+     ↓
+Image Normalization
+     ↓
+Data Augmentation
+     ↓
+     ┌──────────────────────┐
+     │                      │
+     ↓                      ↓
+Custom CNN            MobileNetV2
+     │                Transfer Learning
+     ↓                      ↓
+Feature Learning     Feature Extraction
+     │                      │
+     └──────────┬───────────┘
+                ↓
+        Classification
+                ↓
+       12 Waste Classes
+                ↓
+      Prediction + Confidence
+```
 
 ---
 
 ## 🗂️ Waste Categories
 
-The model classifies images into the following 12 categories:
+The model classifies images into 12 categories:
 
-1. Battery
-2. Biological
-3. Brown Glass
-4. Cardboard
-5. Clothes
-6. Green Glass
-7. Metal
-8. Paper
-9. Plastic
-10. Shoes
-11. Trash
-12. White Glass
-
----
-
-## 🏗️ Project Architecture
-
-### Custom CNN
-
-The baseline CNN consists of:
-
-```text
-Input Image
-     ↓
-Convolutional Layer
-     ↓
-Max Pooling
-     ↓
-Convolutional Layer
-     ↓
-Max Pooling
-     ↓
-Convolutional Layer
-     ↓
-Max Pooling
-     ↓
-Flatten
-     ↓
-Dense Layer
-     ↓
-Dropout
-     ↓
-Output Layer
-```
-
-The CNN learns visual features such as edges, textures, shapes and patterns directly from the training images.
+- Battery
+- Biological
+- Brown Glass
+- Cardboard
+- Clothes
+- Green Glass
+- Metal
+- Paper
+- Plastic
+- Shoes
+- Trash
+- White Glass
 
 ---
 
-## 🚀 MobileNetV2 Transfer Learning
+## 🛠️ Technologies Used
 
-The project also uses **MobileNetV2**, a lightweight convolutional neural network architecture designed for efficient image classification.
-
-Instead of learning all visual features from the beginning, transfer learning allows the model to reuse useful features learned from a large image dataset.
-
-The general pipeline is:
-
-```text
-Input Waste Image
-       ↓
-Image Preprocessing
-       ↓
-MobileNetV2
-       ↓
-Feature Extraction
-       ↓
-Classification Layers
-       ↓
-12 Waste Categories
-```
-
-MobileNetV2 was selected because it provides a good balance between classification performance and computational efficiency.
+| Technology | Purpose |
+|---|---|
+| Python | Programming language |
+| TensorFlow | Deep Learning framework |
+| Keras | Neural network API |
+| MobileNetV2 | Transfer learning model |
+| NumPy | Numerical operations |
+| Matplotlib | Data visualization |
+| Seaborn | Confusion matrix visualization |
+| Scikit-learn | Model evaluation |
+| Google Colab | Model development and training |
+| Kaggle | Dataset source |
+| GitHub | Version control and project documentation |
 
 ---
 
@@ -122,77 +110,58 @@ MobileNetV2 was selected because it provides a good balance between classificati
 
 The final MobileNetV2 model achieved:
 
-| Metric | Result |
-|---|---:|
-| Test Accuracy | **94.72%** |
-| Macro Precision | **0.92** |
-| Macro Recall | **0.92** |
-| Macro F1-Score | **0.92** |
-| Weighted F1-Score | **0.95** |
-| Test Images | **2,328** |
+**Test Accuracy: ~94.72%**
 
-The results show that the model generalizes well to unseen test images.
+The classification report also achieved approximately:
 
-### Strongest Classes
+- Weighted Precision: **0.95**
+- Weighted Recall: **0.95**
+- Weighted F1-Score: **0.95**
 
-Some of the strongest classification results were:
-
-| Class | Precision | Recall | F1-Score |
-|---|---:|---:|---:|
-| Clothes | 0.99 | 0.99 | 0.99 |
-| Shoes | 0.96 | 0.98 | 0.97 |
-| Trash | 0.95 | 0.97 | 0.96 |
-| Biological | 0.95 | 0.95 | 0.95 |
-
-### More Challenging Classes
-
-Some visually similar categories were more difficult:
-
-| Class | Precision | Recall | F1-Score |
-|---|---:|---:|---:|
-| Metal | 0.85 | 0.86 | 0.86 |
-| Plastic | 0.91 | 0.82 | 0.86 |
-| White Glass | 0.86 | 0.87 | 0.87 |
-| Brown Glass | 0.89 | 0.88 | 0.88 |
-
-These differences show why accuracy alone is not enough for evaluating a multi-class classification model.
+The model was evaluated on **2,328 test images**.
 
 ---
 
-## 🔍 Example Prediction
+## 📈 Evaluation Results
 
-The trained model was also tested on a new image that was not part of the training process.
+The repository contains visualizations of the model performance:
+
+### Training Accuracy
+
+Shows the training and validation accuracy across epochs.
+
+### Training Loss
+
+Shows how training and validation loss changed during model training.
+
+### Confusion Matrix
+
+Shows the number of correct and incorrect predictions for each waste category.
+
+### Model Comparison
+
+Compares the validation performance of the custom CNN and MobileNetV2 models.
+
+---
+
+## 🔬 Example Prediction
+
+The trained MobileNetV2 model was also tested on a previously unseen image.
 
 Example:
 
 ```text
-Predicted Class: white-glass
+Predicted Class: White Glass
 Confidence: 99.59%
 ```
 
-The prediction pipeline is:
-
-```text
-New Image
-   ↓
-Resize to 224 × 224
-   ↓
-Normalize Pixel Values
-   ↓
-MobileNetV2
-   ↓
-Class Probabilities
-   ↓
-Highest Probability
-   ↓
-Predicted Waste Category
-```
+This demonstrates how the trained model can be used for individual image inference.
 
 ---
 
-## 📈 Evaluation
+## 🧪 Model Evaluation Metrics
 
-The model was evaluated using:
+The project uses several standard classification metrics:
 
 ### Accuracy
 
@@ -204,15 +173,15 @@ Measures how many images predicted as a particular class actually belong to that
 
 ### Recall
 
-Measures how many actual images of a class were correctly identified.
+Measures how many actual samples of a class were correctly identified.
 
 ### F1-Score
 
-Provides a balance between precision and recall.
+Combines precision and recall into a single metric.
 
 ### Confusion Matrix
 
-Used to analyze which waste categories are correctly classified and which categories are confused with each other.
+Provides a class-by-class view of correct and incorrect predictions.
 
 ---
 
@@ -221,82 +190,77 @@ Used to analyze which waste categories are correctly classified and which catego
 ```text
 smart-waste-classification/
 │
+├── Smart_Waste_Classification.ipynb
 ├── README.md
+├── requirements.txt
 │
-└── Smart_Waste_Classification.ipynb
+└── results/
+    ├── confusion_matrix (1).png
+    ├── model_comparison (1).png
+    ├── training_accuracy (1).png
+    └── training_loss (1).png
 ```
-
-The complete implementation, experiments, training and evaluation are available in the Jupyter/Colab notebook.
 
 ---
 
-## ▶️ How to Run
+## 🚀 How to Run
 
-### 1. Open the notebook
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Sunder1010/smart-waste-classification.git
+```
+
+### 2. Open the notebook
 
 Open:
 
-`Smart_Waste_Classification.ipynb`
+```text
+Smart_Waste_Classification.ipynb
+```
 
-using Google Colab.
+The notebook can be executed using Google Colab.
 
-### 2. Install/Import Dependencies
+### 3. Install dependencies
 
-The notebook contains the required Python libraries.
+```bash
+pip install -r requirements.txt
+```
 
-### 3. Dataset
+### 4. Run the notebook
 
-The project uses a waste image dataset containing the 12 classification categories.
-
-### 4. Run the Notebook
-
-Execute the notebook cells sequentially:
+The notebook contains the complete workflow:
 
 ```text
-Environment Setup
-      ↓
-Dataset Setup
-      ↓
-Data Inspection
-      ↓
-Preprocessing
-      ↓
-CNN Baseline
-      ↓
-MobileNetV2
-      ↓
-Training
-      ↓
-Evaluation
-      ↓
-Confusion Matrix
-      ↓
-Classification Report
-      ↓
-New Image Prediction
+Dataset
+→ Preprocessing
+→ Model Building
+→ Training
+→ Evaluation
+→ Prediction
 ```
 
 ---
 
-## 🎯 Learning Objectives
+## 💡 Key Learning Outcomes
 
-Through this project, the following Deep Learning concepts were implemented:
+Through this project, I worked with:
 
-- Computer Vision
-- Image Classification
 - Convolutional Neural Networks
-- Convolution and Pooling
-- Feature Extraction
 - Transfer Learning
 - MobileNetV2
-- Model Training
-- Model Evaluation
-- Overfitting Control using Dropout
-- Confusion Matrix
-- Precision
-- Recall
-- F1-Score
-- Real-world Image Prediction
+- Image preprocessing
+- Data augmentation
+- Model training and validation
+- Overfitting prevention using Dropout
+- Classification reports
+- Confusion matrices
+- Model comparison
+- Single-image inference
+- TensorFlow/Keras
+- Google Colab
+- Kaggle datasets
+- GitHub project management
 
 ---
 
@@ -304,13 +268,14 @@ Through this project, the following Deep Learning concepts were implemented:
 
 Possible future improvements include:
 
-- Data augmentation
-- Hyperparameter optimization
-- Additional waste categories
-- Better handling of visually similar classes
-- Deployment as a web application
+- Building a web application for real-time prediction
+- Deploying the model using Streamlit
+- Optimizing the model for mobile/edge devices
+- Adding more waste categories
+- Increasing dataset diversity
+- Improving performance on visually similar classes
+- Adding explainable AI techniques such as Grad-CAM
 - Real-time camera-based waste classification
-- Mobile/edge deployment using TensorFlow Lite
 
 ---
 
@@ -318,10 +283,13 @@ Possible future improvements include:
 
 **Sunder1010**
 
-GitHub: `Sunder1010`
+Master of Computer Applications (MCA)
+
+GitHub:  
+https://github.com/Sunder1010
 
 ---
 
-## ⭐ Project Result
+## ⭐ Project Highlights
 
-The final MobileNetV2 model achieved **94.72% test accuracy** across 12 waste categories, demonstrating that transfer learning can provide strong performance for waste image classification while reducing the amount of training required from scratch.
+**94.72% Test Accuracy | MobileNetV2 Transfer Learning | 12-Class Waste Classification | TensorFlow/Keras | Computer Vision**
